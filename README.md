@@ -13,6 +13,10 @@ main.m
 plot_motorPerf.m
 plot_propPerf.m
 
+Additiona data validation files:
+validate_propPerf.m
+PROP-DATA-EXPERIMENTAL.xlsx
+
 addaxis function files by Harry Lee:
 aa_splot.m
 addaxis.m
