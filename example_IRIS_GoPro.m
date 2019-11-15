@@ -4,8 +4,8 @@
 %
 % M. Biczyski, R. Sehab, G.Krebs, J.F. Whidborne, P. Luk
 %
-% example_DJI_Phantom_4_v2.m - modified main.m file with data from
-% DJI Phantom 4 Pro V2.0 quadrotor; for documentation refer to main.m
+% example_IRIS_GoPro.m - modified main.m file with data from
+% IRIS+ quadrotor; for documentation refer to main.m
 %% ------------------------------------------------------------------------
 
 close all; clear; clc;
@@ -19,14 +19,14 @@ RotorNo = 4;
 OptimisationGoal = 'hover'; % hover - best specific thrust (g/W) at hover
                             % max - best specific thrust (g/W) at 100% throttle
                             % utilisation - maximum usable power range of propeller
-ThrustWeightRatio = 3; % 2 - minimum
+ThrustWeightRatio = 2.6; % 2 - minimum
                        % 3 - payload transport
                        % 4 - survaillence
                        % 5+ - aerobatics / hi-speed video
                        % 7+ - racing
 PropDiameter_Min = 8; % inch
-PropDiameter_Max = 9; % inch
-SafetyFactor = 1.05; % [1-2]
+PropDiameter_Max = 10; % inch
+SafetyFactor = 1.0; % [1-2]
 AcceptedTypes = {'MR' 'E' 'E-3' 'E-4'};       
                               % E	Electric
                               % F	Folding Blade (electric only)
@@ -35,10 +35,9 @@ AcceptedTypes = {'MR' 'E' 'E-3' 'E-4'};
                               % E-3	3-Blade
                               % E-4	4-Blade
 
-% [Phantom 4 uses LiHV (LiPo High Voltage)]
-BattCellNo = 4; %S 1P
+BattCellNo = 3; %S 1P
 BattCellVoltage = 3.7; % V per cell
-BattCapacity = 5870; % mAh
+BattCapacity = 5100; % mAh
 BattPeukertConstant = 1.3; % for LiPo
 BattVoltageSagConstant = 0.5/0.8*BattCellNo; % 0.5V decrease per cell in resting volatage for 80% DoD
 BattHourRating = 1; % h
@@ -50,7 +49,7 @@ mass_Propeller_Est = 24;
 mass_Battery = 468;
 
 mass_NoDrive_Est = 0;
-mass_Total_Est = 1375;
+mass_Total_Est = 1300;
 
 %% Filter propeller set
 % propList = name, file, diameter (in), pitch (in), mass (g), speedLimit (RPM)

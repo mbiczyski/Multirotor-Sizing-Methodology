@@ -29,7 +29,7 @@ if current_maximum < 1 % if no maximum current data is available, obtain it from
 end
 current = 1:current_maximum; % prepare current domain
 [~, noLoad_pos] = min(abs([performance{[performance{:,7}]==1,4}]-BattCellNo*BattCellVoltage)); % find no-load test data close to target voltage
-Rm = motors{18}; % read motor windings resitance
+Rm = 2*motors{18}; % read motor windings resitance
 kV = motors{17}; % read motor KV rating
 
 coppLoss = Rm*current.^2; %calclulate copper losses based on windings resistance

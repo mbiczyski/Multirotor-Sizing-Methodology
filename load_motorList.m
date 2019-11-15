@@ -36,7 +36,7 @@ function motorList = load_motorList(voltage, prop_speedMax, prop_torqueMax, prop
         end
         current = 1:current_max; % prepare current domain
         [~, noLoad_pos] = min(abs([performance{[performance{:,7}]==1,4}]-voltage)); % find no-load test data close to target voltage
-        Rm = motors{ii,18}; % read motor windings resitance
+        Rm = 2*motors{ii,18}; % read motor windings resitance
         kV = motors{ii,17}; % read motor KV rating
         mass = motors{ii,14}; % read motor mass
         
@@ -49,8 +49,9 @@ function motorList = load_motorList(voltage, prop_speedMax, prop_torqueMax, prop
         motor_currentMax = (voltage - sqrt(voltage^2-4*Rm*(ironLoss+prop_powerMax)))/(2*Rm); % calculate motor current at WOT
         motor_currentHover = (voltage - sqrt(voltage^2-4*Rm*(ironLoss+prop_powerHover)))/(2*Rm); % calculate motor current at hover
         
+%         disp([motor_id motor_currentMax current_max mass voltage voltageMax*1.15 0.8*voltage*kV prop_speedMax]);
         if isreal(motor_currentMax) && isreal(motor_currentHover) && motor_currentMax > 0 && motor_currentHover > 0 && motor_currentMax <= current_max &&...
-                mass <= spec_mass && voltage < voltageMax*1.15 && 0.8*voltage*kV > prop_speedMax % filter motor
+                mass <= spec_mass && mass > 0 && 0.8*voltage*kV > prop_speedMax % filter motor
             motor_powerMaxEl = voltage*motor_currentMax; % calculate electrical power at WOT
             motor_effMax = prop_powerMax/(voltage*motor_currentMax)*100; % calculate efficiency at WOT
             motor_powerHoverEl = voltage*motor_currentHover; % calculate electrical power at WOT
